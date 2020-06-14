@@ -1,51 +1,60 @@
-//module 로드
+require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-dotenv.config();
-const app = express();
-const passport = require('passport');
+const chalk = require('chalk');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const historyApiFallback = require('connect-history-api-fallback');
+//const compression = require('compression');
+//const cors = require('cors');
 const path = require('path');
-
-const userRouter = require("./router/users");
-const catRouter = require("./router/cats");
-const productRouter = require("./router/products");
-const adminRouter = require("./router/admin");
-const reviewRouter = require("./router/reviews");
-
-require("./database.js");
-//middleware 설정 파트
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(passport.initialize());
-app.use('/uploads/', express.static('uploads'));
-require('./config/passport')(passport);
-// route
-app.use('/users', userRouter);
-app.use('/cats', catRouter);
-app.use('/products', productRouter);
-app.use('/admin', adminRouter);
-app.use('/reviews', reviewRouter);
-if(process.env.NODE_ENV || "production" === 'production'){
-    app.use(express.static('client/build'));
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const webpackConfig = require('../webpack.config');
+const router = require('./router');
+const app = express();
+const PORT = process.env.PORT || 5000;
+//app.use(cors());
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+require('./database');
+//app.use('/api', router);
+// if development
+if (process.env.NODE_ENV !== 'production') {
+  const compiler = webpack(webpackConfig);
+  app.use(
+    historyApiFallback({
+      verbose: false
     })
+  );
+  app.use(
+    webpackMiddleware(compiler, {
+      publicPath: webpackConfig.output.publicPath,
+      contentBase: path.resolve(__dirname, '../client/public'),
+      stats: {
+        colors: true,
+        hash: false,
+        timings: true,
+        chunks: false,
+        chunkModules: false,
+        modules: false
+      }
+    })
+  );
+  app.use(webpackHotMiddleware(compiler));
+  app.use(express.static(path.resolve(__dirname, '../dist')));
+} else {
+  app.use(compression());
+  app.use(express.static(path.resolve(__dirname, '../dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+  });
 }
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Authorization, Accept");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, HEAD, OPTIONS");
-    next();
+app.listen(PORT, () => {
+  console.log(
+    `${chalk.green('✓')} ${chalk.blue(
+      `Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`
+    )}`
+  );
 });
-app.use(async function(err, req, res, next) {
-    console.error(err.message);
-    await res.status(500).json({
-        error: err.message
-    });
-    next();
-});
-const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server running on port ${port}`)); // ``로 자바스크립트 불러오기
