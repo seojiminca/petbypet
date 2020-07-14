@@ -3,10 +3,14 @@ const router = express.Router();
 const userModel = require('../models/user');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-//const passport = require('passport');
+const validateLogin = require('../validation/login')
+const passport = require('passport');
+
+// checking JWT
+const checkAuth = passport.authenticate('jwt', {session: false});
 
 //@route POST http://localhost:5000/users
-//@desc sign up
+//@desc register
 //@access Public
 router.post('/', (req, res) => {
   const { name, email, password } = req.body;
@@ -46,11 +50,64 @@ router.post('/', (req, res) => {
     });
 });
 
-
-
 //@route GET http://localhost:5000/users/
-//@desc sign in
+//@desc login
+//@access Public
+router.post('/login', (req, res) => {
+    const {} = validateLogin(req.body);
+
+    if(!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    const {email, password} = req.body;
+
+    userModel
+        .findOne({email})
+        .then(user => {
+            if(!user) {
+                errors.email = 'User not found';
+                return res.status(404).json(errors);
+            }
+            bcrypt
+                .compare(password, user.password)
+                .then(isMatch => {
+                    if(isMatch) {
+                        const payload = {id: user.id, name: user.name};
+
+                        jwt.sign(
+                            payload,
+                            process.env.secretKey,
+                            {expiresIn: 3600},
+                            (err, token) => {
+                                res.json({
+                                    success: true,
+                                    token: 'Bearer ' + token
+                                });
+                            }
+                        );
+                    } else {
+                        errors.password = 'Password incorrect';
+                        return res.status(400).json(errors);
+                    }
+                })
+                .catch(err => res.json(err))
+
+            }
+        )
+        .catch(err => res.json(err));
+})
+
+//@route DELETE http://localhost:5000/api/users/
+//@desc delete
 //@access Private - admin만 접근가능
+router.delete('/', checkAuth, (req, res) => {
+    userModel
+        .findOneAndDelete({user: req.user.id})
+        .then(() => {
+            res.json({success: true});
+        })
+})
 
 
 //@route GET http://localhost:5000/users/
@@ -58,9 +115,10 @@ router.post('/', (req, res) => {
 //@access Private - admin만 접근가능
 
 
-//@route GET http://localhost:5000/api/users/
-//@desc 
-//@access Private - admin만 접근가능
+//@route PATCH http://localhost:5000/users/
+//@desc update password
+//@access Private
+
 
 
 module.exports = router;
