@@ -9,12 +9,11 @@ const historyApiFallback = require('connect-history-api-fallback');
 const compression = require('compression');
 const cors = require('cors');
 const path = require('path');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
 const webpackConfig = require('../webpack.config');
 
 const userRouter = require('./router/users');
-const catRouter = require('./router/cats');
+const catRouter = require('./cats/cat.controller');
 const productRouter = require('./router/products');
 const reviewRouter = require('./router/reviews');
 const adminRouter = require('./router/admin');
@@ -32,7 +31,7 @@ require('../config/passport')(passport);
 
 //route
 app.use('/users', userRouter);
-//app.use('/cats', catRouter);
+app.use('/cats', catRouter);
 //app.use('/products', productRouter);
 //app.use('/reviews', reviewRouter);
 //app.use('/admin', adminRouter);
