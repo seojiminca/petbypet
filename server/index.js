@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const passport = require('passport');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -23,9 +24,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(logger('dev'));
+app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require('./database');
+require('../config/passport')(passport);
 
 //route
 app.use('/users', userRouter);
