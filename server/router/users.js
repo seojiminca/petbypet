@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
         });
 });
 
-//@route GET http://localhost:5000/users/
+//@route POST http://localhost:5000/users/
 //@desc login
 //@access Public
 router.post('/login', (req, res) => {

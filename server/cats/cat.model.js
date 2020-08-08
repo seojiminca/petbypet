@@ -22,7 +22,7 @@ const catSchema = new Schema(
             required: true,
         },
         user: {
-            type: mongoose.Schema.Types.OjbectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "user",
             required: true,
         },
