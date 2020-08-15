@@ -12,11 +12,11 @@ const path = require('path');
 const logger = require('morgan');
 const webpackConfig = require('../webpack.config');
 
-const userRouter = require('./router/users');
+const userRouter = require('./users/user.controller');
 const catRouter = require('./cats/cat.controller');
-const productRouter = require('./router/products');
-const reviewRouter = require('./router/reviews');
-const adminRouter = require('./router/admin');
+const productRouter = require('./products/product.controller');
+const reviewRouter = require('./reviews/reviews.controller');
+//const adminRouter = require('./admin/admin');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -31,8 +31,8 @@ require('../config/passport')(passport);
 //route
 app.use('/users', userRouter);
 app.use('/cats', catRouter);
-//app.use('/products', productRouter);
-//app.use('/reviews', reviewRouter);
+app.use('/products', productRouter);
+app.use('/reviews', reviewRouter);
 //app.use('/admin', adminRouter);
 
 

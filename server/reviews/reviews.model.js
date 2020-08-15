@@ -14,12 +14,12 @@ const reviewSchema = new Schema(
       type: String
     },
     user: {
-      type: mongoose.Schema.Types.OjbectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "user",
       required: true,
     },
     product: {
-      type: mongoose.Schema.Types.OjbectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "product",
       required: true,
     },

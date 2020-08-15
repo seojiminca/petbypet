@@ -1,22 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const userModel = require('../models/user');
+const userModel = require('./user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const validateLogin = require('../validation/login')
-const passport = require('passport');
 
-// checking JWT
-const checkAuth = passport.authenticate('jwt', {session: false});
+module.exports = {
+    register,
+    login,
+    delete: _delete
+}
 
 //@route POST http://localhost:5000/users
 //@desc register
 //@access Public
-router.post('/', (req, res) => {
-    const {name, email, password} = req.body;
-
-    userModel
-        .findOne({email})
+async function register(userParam) {
+    await userModel
+        .findOne({email: userParam.email})
         .exec()
         .then(user => {
             if (user) {
@@ -52,23 +52,24 @@ router.post('/', (req, res) => {
                 error: err
             });
         });
-});
+    return await newUser.save();
+}
+
+
 
 //@route POST http://localhost:5000/users/
 //@desc login
 //@access Public
-router.post('/login', (req, res) => {
+async function login(userParam) {
     const {errors, isValid} = validateLogin(req.body);
 
     if (!isValid) {
         return res.status(400).json(errors);
     }
 
-    const {email, password} = req.body;
-
     //console.log(email, password);
-    userModel
-        .findOne({email})
+    await userModel
+        .findOne({email: userParam.email})
         .then(user => {
                 //console.log(user);
 
@@ -77,7 +78,7 @@ router.post('/login', (req, res) => {
                     return res.status(404).json(errors);
                 }
                 bcrypt
-                    .compare(password, user.hash)
+                    .compare(userParam.password, user.hash)
                     .then(isMatch => {
                         if (isMatch) {
                             jwt.sign(
@@ -101,18 +102,18 @@ router.post('/login', (req, res) => {
             }
         )
         .catch(err => res.json(err));
-})
+}
 
 //@route DELETE http://localhost:5000/api/users/
 //@desc delete
 //@access Private - admin만 접근가능
-router.delete('/', checkAuth, (req, res) => {
+async function _delete(userParam) {
     userModel
-        .findOneAndDelete({user: req.user.id})
+        .findOneAndDelete({user: userParam.id})
         .then(() => {
             res.json({success: true});
         })
-})
+}
 
 
 //@route GET http://localhost:5000/users/

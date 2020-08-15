@@ -1,11 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const catModel = require('./cat.model');
 
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const validateLogin = require('../validation/login')
-const passport = require('passport');
 
 module.exports = {
     register,

@@ -41,7 +41,7 @@ function getAll(req, res, next) {
 //@access Private
 function getById(req, res, next) {
     catService.getById(req.params.id)
-        .then(cats => res.json(cats))
+        .then(reviews => res.json(reviews))
         .catch(err => next(err));
 }
 
