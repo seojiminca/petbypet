@@ -15,7 +15,7 @@ const webpackConfig = require('../webpack.config');
 const userRouter = require('./users/user.controller');
 const catRouter = require('./cats/cat.controller');
 const productRouter = require('./products/product.controller');
-const reviewRouter = require('./reviews/reviews.controller');
+const reviewRouter = require('./reviews/review.controller');
 //const adminRouter = require('./admin/admin');
 
 const app = express();

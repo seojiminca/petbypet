@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const reviewService = require('./reviews.service');
+const reviewService = require('./review.service');
 const passport = require('passport');
 const checkAuth = passport.authenticate('jwt', {session: false});
 

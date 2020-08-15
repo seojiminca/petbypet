@@ -1,5 +1,5 @@
 const express = require('express');
-const reviewModel = require('./reviews.model');
+const reviewModel = require('./review.model');
 
 
 module.exports = {

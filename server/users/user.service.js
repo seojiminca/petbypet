@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 const validateLogin = require('../validation/login')
 
 module.exports = {
-    register,
+    create,
     login,
     delete: _delete
 }
@@ -14,45 +14,19 @@ module.exports = {
 //@route POST http://localhost:5000/users
 //@desc register
 //@access Public
-async function register(userParam) {
-    await userModel
-        .findOne({email: userParam.email})
-        .exec()
-        .then(user => {
-            if (user) {
-                return res.json("email already exists.");
-            }
+async function create(userParam) {
+       
+    if(await userModel.findOne({email: userParam.email})) {
+        throw 'Email " ' + userParam.email + '" is already taken';
+    }
+        
+    const newUser = new userModel(userParam);
 
-            const newUser = new userModel({
-                name: name,
-                email: email,
-                password: password
-            });
-
-            if (password) {
-                newUser.hash = bcrypt.hashSync(password, 10);
-            }
-
-            newUser
-                .save()
-                .then(user => {
-                    res.json({
-                        msg: "new user added.",
-                        userInfo: user
-                    });
-                })
-                .catch(err => {
-                    res.json({
-                        error: err
-                    });
-                });
-        })
-        .catch(err => {
-            res.json({
-                error: err
-            });
-        });
-    return await newUser.save();
+    if (userParam.password) {
+        newUser.hash = bcrypt.hashSync(userParam.password, 10);
+    }
+   
+    await newUser.save();
 }
 
 

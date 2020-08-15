@@ -16,8 +16,8 @@ module.exports = router;
 //@desc register
 //@access Public
 function register(req, res, next) {
-    userService.register(req.body)
-        .then(user => res.json(user))
+    userService.create(req.body)
+        .then(() => res.json({}))
         .catch(err => next(err));
 }
 
