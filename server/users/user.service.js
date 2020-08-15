@@ -3,7 +3,7 @@ const router = express.Router();
 const userModel = require('./user.model');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const validateLogin = require('../validation/login')
+const validateLogin = require('../validation/login');
 
 module.exports = {
     create,
@@ -14,8 +14,7 @@ module.exports = {
 //@route POST http://localhost:5000/users
 //@desc register
 //@access Public
-async function create(userParam) {
-       
+async function create(userParam) {  
     if(await userModel.findOne({email: userParam.email})) {
         throw 'Email " ' + userParam.email + '" is already taken';
     }
@@ -100,4 +99,3 @@ async function _delete(userParam) {
 //@access Private
 
 
-module.exports = router;
