@@ -18,7 +18,6 @@ const productRouter = require('./router/products');
 const reviewRouter = require('./router/reviews');
 const adminRouter = require('./router/admin');
 
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors());

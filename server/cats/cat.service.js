@@ -28,7 +28,9 @@ async function register(userId, catParam) {
 //@desc get all cats
 //@access Private
 async function getAll(userId) {
-    return await catModel.find();
+    return await catModel.find({
+      user: userId  
+    });
 }
 
 

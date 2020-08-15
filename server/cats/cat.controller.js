@@ -18,6 +18,7 @@ module.exports = router;
 //@access Private
 function register(req, res, next) {
     const userId = req.user.id;
+
     catService.register(userId, req.body)
         //.then(() => res.json({message:"success!"}))
         .then(cat => res.json(cat))
@@ -25,7 +26,7 @@ function register(req, res, next) {
 }
 
 //@route GET http://localhost:5000/cats/
-//@desc get all cats
+//@desc get the user's all cats
 //@access Private
 function getAll(req, res, next) {
     const userId = req.user.id;
