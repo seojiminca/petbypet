@@ -21,17 +21,17 @@ async function register(userId, reviewParam) {
 }
 
 
-//@route GET http://localhost:5000/reviews/:id (product ID)
-//@desc get specific products reviews
+//@route GET http://localhost:5000/reviews/byProduct/:id (product ID)
+//@desc get all reviews by productId
 //@access Public
 async function getByProductId(productId) {
     return await reviewModel.find({
-      product: prouctId  
+      product: productId  
     });
 }
 
-//@route GET http://localhost:5000/reviews/:id (user ID)
-//@desc get specific users reviews
+//@route GET http://localhost:5000/reviews/byUser/:id (user ID)
+//@desc get all reviews by userId
 //@access Public
 async function getByUserId(userId) {
     return await reviewModel.find({
@@ -40,20 +40,20 @@ async function getByUserId(userId) {
 }
 
 //@route GET http://localhost:5000/reviews/:id (review ID)
-//@desc get specific reviews
+//@desc get a review 프론트에서 필요없으면 지우자. 
 //@access Private
 async function getById(id) {
     return await reviewModel.findById(id);
 }
 
 //@route PATCH http://localhost:5000/reviews/:id
-//@desc update reviews
+//@desc update a review
 //@access Private
 async function update(id, reviewParam) {
     const review = await reviewModel.findById(id);
     console.log(review);
 
-    if (!review) throw 'Review not found.';
+    if (!review) throw 'Review is not found.';
 
     Object.assign(review, reviewParam);
 
@@ -62,7 +62,7 @@ async function update(id, reviewParam) {
 
 
 //@route DELETE http://localhost:5000/reviews/:id
-//@desc delete reviews
+//@desc delete a review
 //@access Private
 async function _delete(id) {
     await reviewModel.findByIdAndRemove(id);
