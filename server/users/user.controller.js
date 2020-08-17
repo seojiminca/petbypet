@@ -17,7 +17,7 @@ module.exports = router;
 //@access Public
 function register(req, res, next) {
     userService.create(req.body)
-        .then(() => res.json({}))
+        .then((user) => res.json({user}))
         .catch(err => next(err));
 }
 
@@ -33,19 +33,14 @@ function login(req, res, next){
 
 
 
-//@route DELETE http://localhost:5000/api/users/
+//@route DELETE http://localhost:5000/users/
 //@desc delete
-//@access Private - admin만 접근가능
+//@access Private
 function _delete(req, res, next) {
     userService.delete(req.params.id)
         .then(() => res.json({message: "Deleted"}))
         .catch(err => next(err));
 }
-
-
-
-
-
 
 
 
