@@ -47,7 +47,7 @@ async function login({email, password}) {
     }
                     //await사용 - compareSync로 변경. 동기함수,비동기함수인지 생각할 것.
     if(user && bcrypt.compareSync(password, user.hash)){
-        const token = jwt.sign({id: user.id},process.env.secretKey,{expiresIn: '7d'});
+        const token = jwt.sign({id: user.id},process.env.secretKey,{expiresIn: 3600});
             
         return { 
             ...user.toJSON(), 

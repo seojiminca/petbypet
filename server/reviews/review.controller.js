@@ -6,9 +6,9 @@ const checkAuth = passport.authenticate('jwt', {session: false});
 
 //routes
 router.post('/', checkAuth, register);
-router.get('/byProduct/:id', getByProductId);
-router.get('/byUser/:id', getByUserId);
-router.get('/:id', getById);
+router.get('/byProduct', getByProductId);
+router.get('/byUser', getByUserId);
+router.get('/:id', checkAuth, getById);
 router.patch('/:id', checkAuth, update);
 router.delete('/:id', checkAuth, _delete);
 
@@ -27,35 +27,37 @@ function register(req, res, next) {
 }
 
 
-//@route GET http://localhost:5000/reviews/byProduct/:id (product ID)
-//@desc get all reviews by productId
+//@route GET http://localhost:5000/reviews/:id (product ID)
+//@desc get specific products reviews
 //@access Public
 function getByProductId(req, res, next) {
-    reviewService.getByProductId(req.params.id)
+    const productId = req.param.id;
+    reviewService.getByProductId(productId)
         .then(reviews => res.json(reviews))
         .catch(err => next(err));
 }
 
-//@route GET http://localhost:5000/reviews/byUser/:id (user ID)
-//@desc get all reviews by userId
+//@route GET http://localhost:5000/reviews/:id (user ID)
+//@desc get specific users reviews
 //@access Public
 function getByUserId(req, res, next) {
-    reviewService.getByUserId(req.params.id)
+    const userId = req.user.id;
+    reviewService.getByProductId(userId)
         .then(reviews => res.json(reviews))
         .catch(err => next(err));
 }
 
 //@route GET http://localhost:5000/reviews/:id (review ID)
-//@desc get a review. 프론트에서 필요없으면 지우자. 
+//@desc get specific reviews
 //@access Private
 function getById(req, res, next) {
-    reviewService.getById(req.params.id)
-        .then(review => res.json(review))
+    reviewService.getByProductId(req.param.id)
+        .then(reviews => res.json(reviews))
         .catch(err => next(err));
 }
 
 //@route PATCH http://localhost:5000/reviews/:id
-//@desc update a review
+//@desc update reviews
 //@access Private
 function update(req, res, next) {
     reviewService.update(req.params.id, req.body)
@@ -65,7 +67,7 @@ function update(req, res, next) {
 
 
 //@route DELETE http://localhost:5000/reviews/:id
-//@desc delete a review
+//@desc delete reviews
 //@access Private
 function _delete(req, res, next) {
     reviewService.delete(req.params.id)
