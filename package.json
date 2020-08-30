@@ -15,6 +15,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "history": "^4.9.0",
+    "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.11",
     "morgan": "^1.10.0",
@@ -31,6 +32,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "simple-line-icons": "^2.4.1",
+    "tailwindcss": "^1.7.6",
     "validator": "^13.1.1"
   },
   "scripts": {
