@@ -4,6 +4,10 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema(
   {
+    brand: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -12,6 +16,15 @@ const productSchema = new Schema(
       type: String
     },
     desc: {
+      type: String
+    },
+    flavour: {
+      type: String
+    },
+    item_form: {
+      type: String
+    },
+    age: {
       type: String
     }
   },
