@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RiviewRegistration = () => (
-  <h1>Riview Registration</h1>
+const ReviewRegistration = () => (
+  <h1>Review Registration</h1>
 );
-export default RiviewRegistration;
+export default ReviewRegistration;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {isAuth} from '../helpers/auth';
 import {Redirect} from 'react-router-dom';
 
-const UserRegistration = () => { //?
+const UserRegistration = () => { 
 
     //현재값, 업데이트값.
     const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const UserRegistration = () => { //?
         textChange: 'Sign up' //btn text
     });
 
-    const {name, email, password1, password2, textChange} = formData; //?
+    const {name, email, password1, password2, textChange} = formData; // const name = formData.name 
 
     const handleChange = text => e => { //값이 들어오면 form 바뀐다. text:사용자입력값. e: each value
         setFormData({...formData, [text]: e.target.value});
@@ -34,7 +34,7 @@ const UserRegistration = () => { //?
                     })
                     .then(res => {
                         setFormData({
-                            ...formData, //초기화.
+                            ...formData,//초기화. 왜 사용하는건지??
                             name: '',
                             email: '',
                             password1: '',
