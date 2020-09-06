@@ -16,20 +16,25 @@ const ProductList = () => {
 
   return (
     <main className='p-4'>
-      <ul className='grid grid-cols-3 gap-6'>
+      <ul className='grid grid-cols-1 gap-6'>
         {data.products.map((item) => (
-          <li key={item._id} className='h-50'>
-            <Link to={`/productdetail/${item._id}`}>
-              <div>
-                <img
-                  className='rounded'
-                  src='https://catlifetoday.com/wp-content/uploads/2019/05/dry-cat-food.jpg'
-                ></img>
-                <h3 className='text-center'>{item.name}</h3>
-                <h6 className='text-center text-gray-500'>{item.brand}</h6>
+          <Link
+            to={{
+              pathname: `/productdetail/${item.name}`,
+              state: {
+                productId: item._id,
+              },
+            }}
+          >
+            <li key={item._id} className='grid grid-cols-2 h-50'>
+              <img className='rounded h-50 w-auto' src={item.image} />
+
+              <div className='p-4'>
+                <h6 className='text-gray-500'>{item.brand}</h6>
+                <h3>{item.name}</h3>
               </div>
-            </Link>
-          </li>
+            </li>
+          </Link>
         ))}
       </ul>
     </main>
