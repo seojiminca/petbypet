@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import {ToastContainer, toast} from 'react-toastify';
+import axios from 'axios';
+import { authenticate, isAuth } from '../_middleware/auth';
 
 const Login = () => {
 
@@ -19,11 +22,29 @@ const Login = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        //need more code here
+        if (email && password) {
+            axios
+                .post(`http://localhost:5000/user/login`, {
+                    token
+                })
+                .then(res => {
+                    setFormData({
+                        ...formData,
+                        show: false
+                    });
+                    toast.success(res.data.message);
+                })
+                .catch(err => {
+                    toast.error(err.response.data.errors);
+                });
+        }else{
+            toast.error('Please fill all fields')
+        }
     };
 
     return (
         <div className='min-h-screen bg-gray-100 text-gray-900 flex justify-center'>
+            <ToastContainer/>
             <div className='max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1'>
                 <div className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
                     <div className='mt-12 flex flex-col items-center'>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {isAuth} from '../helpers/auth';
+import {isAuth} from '../_middleware/auth';
 import {Redirect} from 'react-router-dom';
 import {Link} from "react-router-dom";
 

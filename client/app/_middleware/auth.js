@@ -7,12 +7,12 @@ export const getCookie = key => {
     }
 };
 
-export const isAuth = () => {
+export const isAuth = () => { //??
     if (window !== 'undefined') {
         const cookieChecked = getCookie('token');
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
-                return JSON.parse(localStorage.getItem('user'));
+                return JSON.parse(localStorage.getItem('user')); //parse: string 객체를 json 객체로 변환.
             } else {
                 return false;
             }
@@ -20,3 +20,7 @@ export const isAuth = () => {
     }
 }
 
+//로그인
+export const authenticate = () => {
+
+}

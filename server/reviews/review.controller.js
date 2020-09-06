@@ -5,7 +5,7 @@ const passport = require('passport');
 const checkAuth = passport.authenticate('jwt', {session: false});
 
 //routes
-router.post('/', checkAuth, register);
+router.post('/post', checkAuth, register);
 router.get('/byProduct', getByProductId);
 router.get('/byUser', getByUserId);
 router.get('/:id', checkAuth, getById);
@@ -14,7 +14,7 @@ router.delete('/:id', checkAuth, _delete);
 
 module.exports = router;
 
-//@route POST http://localhost:5000/reviews/
+//@route POST http://localhost:5000/reviews/post
 //@desc post reviews
 //@access Private
 function register(req, res, next) {

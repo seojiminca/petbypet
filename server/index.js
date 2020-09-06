@@ -1,6 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const passport = require('passport');
+const passportLocal = require('passport-local').Strategy;
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const bodyParser = require('body-parser');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
@@ -20,13 +24,31 @@ const reviewRouter = require('./reviews/review.controller');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-app.use(cors());
+
+
+//middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors({ //IMPORTANT: Nothing is gonna work inside of authentification.
+  origin: 'https://localhost:5000', //location of the react app were connecting to
+  credentials: true //TRUE!
+}));
+app.use(session({
+  secret: process.env.secretKey,
+  resave: true,
+  saveUninitialized: true
+}))
+app.use(cookieParser(process.env.secretKey))
+app.use(passport.initialize()); //Passport module initialize.
+app.use(passport.session());
+require('../config/passport')(passport); //same instance
+
+
+
 app.use(logger('dev'));
-app.use(passport.initialize());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require('./database');
-require('../config/passport')(passport);
 
 //route
 app.use('/users', userRouter);
@@ -68,6 +90,7 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
+//start server
 app.listen(PORT, () => {
   console.log(
     `${chalk.green('✓')} ${chalk.blue(
