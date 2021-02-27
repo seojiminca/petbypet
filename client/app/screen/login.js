@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {ToastContainer, toast} from 'react-toastify';
 import axios from 'axios';
-import { authenticate, isAuth } from '../_middleware/auth';
+import {authenticate, isAuth} from '../_middleware/auth';
 
 const Login = () => {
 
@@ -37,7 +37,7 @@ const Login = () => {
                 .catch(err => {
                     toast.error(err.response.data.errors);
                 });
-        }else{
+        } else {
             toast.error('Please fill all fields')
         }
     };
@@ -92,7 +92,7 @@ const Login = () => {
                                     type='submit'
                                     className='mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none'
                                 >
-                                    <i className='fas fa-sign-in-alt  w-6  -ml-2' />
+                                    <i className='fas fa-sign-in-alt  w-6  -ml-2'/>
                                     <span className='ml-3'>Login</span>
                                 </button>
 
@@ -108,8 +108,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
-)
-    ;
+    );
 };
 
 export default Login;

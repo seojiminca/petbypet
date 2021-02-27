@@ -29,18 +29,18 @@ const PORT = process.env.PORT || 5000;
 //middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors({ //IMPORTANT: Nothing is gonna work inside of authentification.
-  origin: 'https://localhost:5000', //location of the react app were connecting to
+app.use(cors({ //IMPORTANT: without CORS Nothing is gonna work inside of authentication.
+  origin: process.env.CLIENT_URL, //location of the react app were connecting to
   credentials: true //TRUE!
 }));
 app.use(session({
-  secret: process.env.secretKey,
+  secret: process.env.JWT_SECRET,
   resave: true,
   saveUninitialized: true
 }))
-app.use(cookieParser(process.env.secretKey))
+app.use(cookieParser(process.env.JWT_SECRET))
 app.use(passport.initialize()); //Passport module initialize.
-app.use(passport.session());
+app.use(passport.session()); //initialize session part of passport.
 require('../config/passport')(passport); //same instance
 
 
