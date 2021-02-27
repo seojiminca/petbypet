@@ -7,7 +7,7 @@ export const getCookie = key => {
     }
 };
 
-export const isAuth = () => { //??
+export const isAuth = () => {
     if (window !== 'undefined') {
         const cookieChecked = getCookie('token');
         if (cookieChecked) {

@@ -10,7 +10,9 @@ const ReviewRegistration = () => {
     const [formData, setFormData] = useState({
         rate: 0,
         comment: '',
+        user: '',
         product: '',
+        uploadFile: null,
         textChange: 'SUBMIT' //btn text
     });
 
@@ -50,7 +52,7 @@ const ReviewRegistration = () => {
                         comment: '',
                         user: '',
                         product: '',
-                        textChange: 'Comment is submitted'
+                        textChange: 'Submitted'
                     });
                     console.log(err.response);
                 });
@@ -83,9 +85,13 @@ const ReviewRegistration = () => {
                                     value={comment}
                                 />
 
-                                <button className='flex justify-end w-30 rounded-lg hover:bg-gray-100 hover:text-indigo-400'>
-                                    < i className='mt-10 far fa-images w-10'/>
-                                </button>
+                                {/*file upload*/}
+                                <div>
+                                    <input type="file" name="file" onChange={null} />
+                                    <button onClick={null} className='flex justify-end w-30 rounded-lg hover:bg-gray-100 hover:text-indigo-400'>
+                                        < i className='mt-10 far fa-images w-10'/>
+                                    </button>
+                                </div>
 
                                 <div className="flex justify-end pt-2">
                                     <button
@@ -113,7 +119,7 @@ export default ReviewRegistration;
 //여기다 복붙
   const productId = props.match.params.id;
   const [productData, setProductData] = useState({});
-  
+
   useEffect(() => {
     const fetchData = async () => {
       const product = await axios(

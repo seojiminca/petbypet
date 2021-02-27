@@ -21,7 +21,7 @@ async function create(userParam) {
     const newUser = new userModel(userParam);
 
     if (userParam.password) {
-        newUser.hash = bcrypt.hashSync(userParam.password, 10);
+        newUser.hashed = bcrypt.hashSync(userParam.password, 10);
     }
 
     return await newUser.save();
