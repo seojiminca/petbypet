@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import MainLayout from './MainLayout';
 
 const ProductDetail = () => {
   const { productId } = useLocation().state;
@@ -19,7 +20,7 @@ const ProductDetail = () => {
   }, {});
 
   return (
-    <main className='p-4'>
+    <MainLayout>
       <section>
         <div className='container text-center h-300'>
           <h3>{productData.brand}</h3>
@@ -53,7 +54,7 @@ const ProductDetail = () => {
         </button>
         <li></li>
       </section>
-    </main>
+    </MainLayout>
   );
 };
 export default ProductDetail;

@@ -1,0 +1,33 @@
+ul {
+  list-style: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+.product {
+  border: 1px solid magenta;
+  height: 300px;
+}
+
+.product-img {
+  width: 150px;
+  border: 1px solid orange;
+}
+
+.title {
+  border: 1px solid gray;
+}
+
+.title h3 {
+  font-size: 14px;
+}
+
+.title h6 {
+  font-size: 12px;
+}
