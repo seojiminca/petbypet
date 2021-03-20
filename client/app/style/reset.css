@@ -34,3 +34,11 @@ li img, dd img{vertical-align:top;}
 
 img{max-width:100%;}
 /* width값이 %로 된 이미지들이 브라우저 폭이 줄 경우 비례를 맞추어 줄도록 하기위해 사용 ipad 사이즈에서 */
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
