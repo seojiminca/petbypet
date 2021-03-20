@@ -28,11 +28,21 @@ const ProductList = () => {
             }}
           >
             <li key={item._id} className='product'>
-              <img className='product-img' src={item.image} />
-
-              <div className='title'>
-                <h6>{item.brand}</h6>
-                <h3>{item.name}</h3>
+              <div className='img_wrapper'>
+                <img className='product-img' src={item.image} />
+              </div>
+              <div className='title_wrapper'>
+                <div className='title'>
+                  <h6>{item.brand}</h6>
+                  <h3>{item.name}</h3>
+                </div>
+                <div className='face'>
+                  <ul className='face_list'>
+                    <li>😄</li>
+                    <li>🙂</li>
+                    <li>😣</li>
+                  </ul>
+                </div>
               </div>
             </li>
           </Link>

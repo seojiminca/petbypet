@@ -12,22 +12,52 @@ a:visited {
 
 .product {
   border: 1px solid magenta;
-  height: 300px;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img_wrapper{
+  border: 1px solid mediumpurple;
+  height: 170px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-img {
-  width: 150px;
   border: 1px solid orange;
+  width: 96px;
+}
+
+.title_wrapper{
+  display: flex;
+  flex-direction: column;
+  width:300px;
 }
 
 .title {
   border: 1px solid gray;
 }
 
+.title h6 {
+  font-size: 12px;
+  font-weight:600;
+}
+
 .title h3 {
   font-size: 14px;
 }
 
-.title h6 {
-  font-size: 12px;
+.face_list{
+  border: 1px solid mediumpurple;
+  display: flex;
 }
+
+.face_list li {
+  font-size: 30px;
+  margin:3px;
+}
+
