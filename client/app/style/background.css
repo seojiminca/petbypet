@@ -14,13 +14,19 @@
 
 .inner_container {
   margin-left: 30px;
-  width: 450px;
-  border: 5px solid green;
+  height: 100%; /*보통 컨테이너에 height는 넣지않고 내용물의 높이와 마진 패딩값만 */
+  border: 2px solid green;
   padding: 20px 10px 20px 10px;
+
+  /*position: relative;*/
+  /*footer： position：absolute 하면 기준이 필요하니까 relative*/
+
+  overflow: hidden;
 }
 
 .inner_contents{
-  overflow: scroll;
-  height:450px;
-  border: 5px solid orangered;
+  overflow: scroll; /*scroll hidden 언니가 나중에*/
+  height:100%;
+  /*max-height:95%;*/
+  border: 1px solid orangered;
 }

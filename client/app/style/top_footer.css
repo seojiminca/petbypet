@@ -1,7 +1,7 @@
-.top_bar{
+.top_bar {
     display: flex;
-    justify-content:space-between;
-    height:50px;
+    justify-content: space-between;
+    height: 50px;
 }
 
 .login {
@@ -13,5 +13,5 @@
 }
 
 footer {
-height: 50px;
+    height: 150px;
 }

@@ -3,6 +3,8 @@
 /* reset.css */
 html,body{width:100%;height:100%;}
 
+*{box-sizing: border-box;} /* height값에 borderline 포함시키기 */
+
 body,div,dl,dt,dd,ul,li,ol,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,table,caption,tbody,tfoot,thead,tr,th,td,summary,
 small,b,i,article,aside,canvas,details,figcaption,figure,footer,header,menu,nav,section,time,mark,audio,video,button{margin:0;padding:0;}
 
@@ -42,3 +44,4 @@ a:link {
 a:visited {
     text-decoration: none;
 }
+
