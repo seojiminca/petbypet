@@ -1,7 +1,6 @@
 
 .product {
   border: 1px solid magenta;
-  height: 180px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +9,6 @@
 .img_wrapper{
   border: 1px solid mediumpurple;
   height: 170px;
-  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +26,9 @@
 }
 
 .title {
-  border: 1px solid gray;
+  border: 2px solid gray;
+  width: 220px;
+  margin-left: 35px;
 }
 
 .title h6 {
@@ -41,8 +41,9 @@
 }
 
 .face_list{
-  border: 1px solid mediumpurple;
+  border: 2px solid mediumpurple;
   display: flex;
+  justify-content: flex-end
 }
 
 .face_list li {

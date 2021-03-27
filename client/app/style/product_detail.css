@@ -1,0 +1,21 @@
+.product-detail {
+  border: 1px solid blue;
+  display: flex;
+}
+
+.detail-img-wrapper {
+  height: 200px;
+}
+
+.detail-img {
+  border: 1px solid orange;
+  width: 150px;
+  left: 0;
+}
+
+.detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 30px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import MainLayout from '../components/mainlayout';
+import '../style/product_list.css';
 
 const ProductList = () => {
   const [data, setData] = useState({ products: [] });
@@ -36,13 +37,11 @@ const ProductList = () => {
                   <h6>{item.brand}</h6>
                   <h3>{item.name}</h3>
                 </div>
-                <div className='face'>
-                  <ul className='face_list'>
-                    <li>😄</li>
-                    <li>🙂</li>
-                    <li>😣</li>
-                  </ul>
-                </div>
+                <ul className='face_list'>
+                  <li>😄</li>
+                  <li>🙂</li>
+                  <li>😣</li>
+                </ul>
               </div>
             </li>
           </Link>

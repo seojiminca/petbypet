@@ -27,6 +27,7 @@
 .inner_contents{
   overflow: scroll; /*scroll hidden 언니가 나중에*/
   height:100%;
+  width: 400px;
   /*max-height:95%;*/
-  border: 1px solid orangered;
+  border: 2px solid orangered;
 }
