@@ -59,20 +59,6 @@ const ProductDetail = () => {
       <section className='mt-16'>
         <div className='text-center justify-center w-full lg:w-6/12 px-4'>
           <h2 className='my-6 text-2xl font-semibold'>Reviews</h2>
-          <button className='p-2 rounded-full bg-indigo-500 text-white mx-5 -mb-4 hover:bg-indigo-400 focus:outline-none focus:bg-indigo-400'>
-            <Link
-              key={data.product._id}
-              to={{
-                pathname: `/reviewregistration/${data.product.name}`,
-                state: {
-                  productId: data.product._id,
-                  image: data.product.image,
-                },
-              }}
-            >
-              create new review
-            </Link>
-          </button>
         </div>
 
         {!data.reviews || data.reviews.length < 1 ? (

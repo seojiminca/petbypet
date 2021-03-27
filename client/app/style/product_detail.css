@@ -1,6 +1,7 @@
 .product-detail {
   border: 1px solid blue;
   display: flex;
+  height: 200px;
 }
 
 .detail-img-wrapper {
