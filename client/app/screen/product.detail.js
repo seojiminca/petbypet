@@ -6,37 +6,36 @@ import '../style/product_detail.css';
 
 const ProductDetail = () => {
   const { productId } = useLocation().state;
-  const [productData, setProductData] = useState({});
-  const [reviewData, setReviewData] = useState([]);
+
+  const [data, setData] = useState({ product: {}, reviews: [] });
   useEffect(() => {
     const fetchData = async () => {
-      const product = await axios(
-        `http://localhost:5000/products/${productId}`
-      );
-      // const reviews = await axios(`http://localhost:5000/reviews/${productId}`);
-      setProductData(product.data);
+      const [product, reviews] = await Promise.all([
+        axios(`http://localhost:5000/products/${productId}`),
+        axios(`http://localhost:5000/reviews/byProduct/${productId}`),
+      ]);
+      setData({ product: product.data, reviews: reviews.data });
     };
-
     fetchData();
-  }, {});
+  }, []);
 
   return (
     <MainLayout>
       <section>
         <div className='product-detail'>
           <div className='detail-img-wrapper'>
-            <img className='detail-img' src={productData.image}></img>
+            <img className='detail-img' src={data.product.image}></img>
           </div>
           <div className='detail-wrapper'>
-            <h1 className='text-lg'>{productData.name}</h1>
-            <h3>{productData.brand}</h3>
+            <h1 className='text-lg'>{data.product.name}</h1>
+            <h3>{data.product.brand}</h3>
             <button className='bg-indigo-500'>
               <Link
                 to={{
-                  pathname: `/reviewregistration/${productData.name}`,
+                  pathname: `/reviewregistration/${data.product.name}`,
                   state: {
-                    productId: productData._id,
-                    image: productData.image,
+                    productId: data.product._id,
+                    image: data.product.image,
                   },
                 }}
               >
@@ -57,10 +56,69 @@ const ProductDetail = () => {
         </div>
       </section>
 
-      <section>
-        <h2>Reviews</h2>
+      <section className='mt-16'>
+        <div className='text-center justify-center w-full lg:w-6/12 px-4'>
+          <h2 className='my-6 text-2xl font-semibold'>Reviews</h2>
+          <button className='p-2 rounded-full bg-indigo-500 text-white mx-5 -mb-4 hover:bg-indigo-400 focus:outline-none focus:bg-indigo-400'>
+            <Link
+              key={data.product._id}
+              to={{
+                pathname: `/reviewregistration/${data.product.name}`,
+                state: {
+                  productId: data.product._id,
+                  image: data.product.image,
+                },
+              }}
+            >
+              create new review
+            </Link>
+          </button>
+        </div>
 
-        <li></li>
+        {!data.reviews || data.reviews.length < 1 ? (
+          <div className='my-6 text-center justify-center w-full'>
+            <h3>아직 리뷰가 없습니다.</h3>
+          </div>
+        ) : (
+          <ul className='mt-12 justify-center'>
+            {data.reviews.map((review) => (
+              <>
+                <hr className='my-6 mt-12 rounded-sm' />
+                <li key={review._id}>
+                  <div className='grid grid-cols-3 gap-4'>
+                    <div className='col-1'>
+                      <img
+                        className='h-20 w-20 rounded mx-auto'
+                        src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
+                        alt="user's cat image"
+                      />
+                    </div>
+                    <div className='col-span-2'>
+                      <Link
+                        key={review._id}
+                        to={{
+                          pathname: '/userProfile',
+                          state: {
+                            userId: review.user._id,
+                            userName: review.user.name,
+                          },
+                        }}
+                      >
+                        <h3>{review.user.name}</h3>
+                      </Link>
+                      <span>
+                        {Array.from({ length: review.rate }, (v) => '*').join(
+                          ''
+                        )}
+                      </span>
+                      <p>{review.comment}</p>
+                    </div>
+                  </div>
+                </li>
+              </>
+            ))}
+          </ul>
+        )}
       </section>
     </MainLayout>
   );
