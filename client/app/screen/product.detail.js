@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import MainLayout from '../components/mainlayout';
 import '../style/product_detail.css';
 
 const ProductDetail = () => {
-  const { productId } = useLocation().state;
+  const { productId } = useParams();
 
   const [data, setData] = useState({ product: {}, reviews: [] });
   useEffect(() => {

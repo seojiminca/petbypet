@@ -22,7 +22,7 @@ const ProductList = () => {
         {data.products.map((item) => (
           <Link
             to={{
-              pathname: `/productdetail/${item.name}`,
+              pathname: `/productdetail/${item._id}`,
               state: {
                 productId: item._id,
               },

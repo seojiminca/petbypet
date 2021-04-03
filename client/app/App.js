@@ -25,13 +25,13 @@ const App = () => {
                 <Route exact path='/' component={Main}/>
                 <Route
                     exact
-                    path='/productdetail/:productName'
+                    path='/productdetail/:productId'
                     component={ProductDetail}
                 />
                 <Route exact path='/productlist' component={ProductList}/>
                 <Route
                     exact
-                    path='/reviewregistration/:productName'
+                    path='/reviewregistration/:productId'
                     component={ReviewRegistration}
                 />
                 <Route exact path='/search' component={Search}/>
