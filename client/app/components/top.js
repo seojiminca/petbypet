@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import '../style/top_footer.css';
-import { faChevronLeft, faHome } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChevronLeft,
+  faHome,
+  faUserPlus,
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Top = ({ title, isBackButton, backFunc, params }) => {
@@ -14,15 +19,22 @@ const Top = ({ title, isBackButton, backFunc, params }) => {
             <Link style={{ marginRight: 20 }}>
               <FontAwesomeIcon icon={faChevronLeft} size='2x' />
             </Link>
-            <Link>
+            <Link to='/'>
               <FontAwesomeIcon icon={faHome} size='2x' />
             </Link>
           </div>
         )}
-        <div>
+        <div className='topbar-title'>
           <h1>{title}</h1>
         </div>
-        <div className='login'>login</div>
+        <Link to='/'>
+          <FontAwesomeIcon icon={faSearch} size='2x' />
+        </Link>
+        <div className='login'>
+          <Link>
+            <FontAwesomeIcon icon={faUserPlus} size='2x' />
+          </Link>
+        </div>
       </div>
     </nav>
   );

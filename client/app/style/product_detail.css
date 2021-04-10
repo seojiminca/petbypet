@@ -10,8 +10,8 @@
 
 .detail-img {
   border: 1px solid orange;
-  width: 150px;
   left: 0;
+  width: 150px;
 }
 
 .detail-wrapper {
@@ -19,4 +19,43 @@
   flex-direction: column;
   justify-content: space-around;
   margin-left: 30px;
+}
+
+.detail-wrapper h1 {
+  color: rgba(0, 0, 0, 0.938);
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: capitalize;
+}
+
+.detail-wrapper h3 {
+  color: #326277;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.review-btn {
+  width:90px;
+  background-color: #3D5159;
+  border-radius: 5px;
+  border: 0;
+  font-weight: 500;
+  line-height: initial;
+  padding-bottom: 5px;
+  margin-top:20px;
+}
+
+.btn-txt {
+  font-size: 12px !important;
+  color:white !important;
+}
+
+.face_detail {
+display: flex;
+}
+
+.face_detail li {
+  font-size: 30px;
+  margin:3px;
 }

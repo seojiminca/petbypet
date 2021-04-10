@@ -27,10 +27,11 @@ const ProductDetail = () => {
             <img className='detail-img' src={data.product.image}></img>
           </div>
           <div className='detail-wrapper'>
-            <h1 className='text-lg'>{data.product.name}</h1>
+            <h1>{data.product.name}</h1>
             <h3>{data.product.brand}</h3>
-            <button className='bg-indigo-500'>
+            <button className='review-btn'>
               <Link
+                className='btn-txt'
                 to={{
                   pathname: `/reviewregistration/${data.product.name}`,
                   state: {
@@ -39,10 +40,10 @@ const ProductDetail = () => {
                   },
                 }}
               >
-                create new review
+                Write a review
               </Link>
             </button>
-            <ul className='face_list'>
+            <ul className='face_detail'>
               <li>😄</li>
               <li>🙂</li>
               <li>😣</li>
@@ -56,30 +57,29 @@ const ProductDetail = () => {
         </div>
       </section>
 
-      <section className='mt-16'>
-        <div className='text-center justify-center w-full lg:w-6/12 px-4'>
-          <h2 className='my-6 text-2xl font-semibold'>Reviews</h2>
+      <section>
+        <div>
+          <h2>Reviews</h2>
         </div>
 
         {!data.reviews || data.reviews.length < 1 ? (
-          <div className='my-6 text-center justify-center w-full'>
+          <div>
             <h3>아직 리뷰가 없습니다.</h3>
           </div>
         ) : (
-          <ul className='mt-12 justify-center'>
+          <ul>
             {data.reviews.map((review) => (
               <>
-                <hr className='my-6 mt-12 rounded-sm' />
+                <hr />
                 <li key={review._id}>
-                  <div className='grid grid-cols-3 gap-4'>
-                    <div className='col-1'>
+                  <div>
+                    <div>
                       <img
-                        className='h-20 w-20 rounded mx-auto'
                         src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
                         alt="user's cat image"
                       />
                     </div>
-                    <div className='col-span-2'>
+                    <div>
                       <Link
                         key={review._id}
                         to={{
@@ -109,4 +109,5 @@ const ProductDetail = () => {
     </MainLayout>
   );
 };
+
 export default ProductDetail;

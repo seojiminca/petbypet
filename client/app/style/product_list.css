@@ -43,7 +43,7 @@
 .face_list{
   border: 2px solid mediumpurple;
   display: flex;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
 .face_list li {
