@@ -5,7 +5,7 @@ import '../style/review.css';
 const Review = ({ reviews }) => {
   return (
     <section className='review-frame'>
-      <h2>Reviews</h2>
+      <h2 className='review-title'>Reviews</h2>
 
       {!reviews || reviews.length < 1 ? (
         <div>

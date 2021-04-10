@@ -3,6 +3,13 @@
     background-color:#E8F2F6;
     padding:10px;
     margin-top:15px;
+    color: #326277;
+    font-weight: 500;
+    font-size:13px;
+}
+
+.review-title {
+    font-weight: 600;
 }
 
 .cat-character-img img {
@@ -20,6 +27,9 @@
 }
 
 .review-comment {
-    background-color: #F6FDFF;
-    border-radius: 15px;
+    background-color: #e4f2f7;
+    border-radius: 6px;
+    width:250px;
+    padding:5px;
+    height:60px;
 }
