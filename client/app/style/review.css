@@ -1,0 +1,25 @@
+.review-frame {
+    border-radius: 20px;
+    background-color:#E8F2F6;
+    padding:10px;
+    margin-top:15px;
+}
+
+.cat-character-img img {
+    width: 50px;
+    margin-right:20px;
+}
+
+.each-user-review {
+    background-color: white;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top:10px;
+    padding:15px;
+    display: flex;
+}
+
+.review-comment {
+    background-color: #F6FDFF;
+    border-radius: 15px;
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import MainLayout from '../components/mainlayout';
+import Review from '../components/review';
 import '../style/product_detail.css';
 
 const ProductDetail = () => {
@@ -56,56 +57,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </section>
-
-      <section>
-        <div>
-          <h2>Reviews</h2>
-        </div>
-
-        {!data.reviews || data.reviews.length < 1 ? (
-          <div>
-            <h3>아직 리뷰가 없습니다.</h3>
-          </div>
-        ) : (
-          <ul>
-            {data.reviews.map((review) => (
-              <>
-                <hr />
-                <li key={review._id}>
-                  <div>
-                    <div>
-                      <img
-                        src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
-                        alt="user's cat image"
-                      />
-                    </div>
-                    <div>
-                      <Link
-                        key={review._id}
-                        to={{
-                          pathname: '/userProfile',
-                          state: {
-                            userId: review.user._id,
-                            userName: review.user.name,
-                          },
-                        }}
-                      >
-                        <h3>{review.user.name}</h3>
-                      </Link>
-                      <span>
-                        {Array.from({ length: review.rate }, (v) => '*').join(
-                          ''
-                        )}
-                      </span>
-                      <p>{review.comment}</p>
-                    </div>
-                  </div>
-                </li>
-              </>
-            ))}
-          </ul>
-        )}
-      </section>
+      <Review reviews={data.reviews} />
     </MainLayout>
   );
 };
