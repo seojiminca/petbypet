@@ -6,6 +6,7 @@ const productService = require("./product.service");
 router.get("/", getAll);
 router.get("/:id", getById);
 
+
 module.exports = router;
 
 //@route GET http://localhost:5000/products/
@@ -27,3 +28,4 @@ function getById(req, res, next) {
     .then((products) => res.json(products))
     .catch((err) => next(err));
 }
+

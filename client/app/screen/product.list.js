@@ -17,7 +17,7 @@ const ProductList = () => {
   }, []);
 
   return (
-    <MainLayout>
+    <MainLayout top={{ title: 'Pet by Pet', isBackButton: false }} footer>
       <ul>
         {data.products.map((item) => (
           <Link
