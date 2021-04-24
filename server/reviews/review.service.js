@@ -25,7 +25,7 @@ async function register(userId, reviewParam) {
 async function getByProductId(productId) {
   return await reviewModel.find({
     product: productId,
-  });
+  }).populate('cat');
 }
 
 //@route GET http://localhost:5000/reviews/:id (user ID)

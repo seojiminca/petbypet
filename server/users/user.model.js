@@ -15,6 +15,11 @@ const userSchema = new Schema(
         name: {
             type: String,
             required: true
+        },
+        cat: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "cat",
+            required: true
         }
     },
     {

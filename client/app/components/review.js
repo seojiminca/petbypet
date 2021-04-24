@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import '../style/review.css';
 
 const Review = ({ reviews }) => {
+
+  const getFaceImage = (rate) => {
+    if(rate === 1) return '😄';
+    if(rate === 2) return '🙂';
+    if(rate === 3) return '😣';
+    return "X";
+  }
+  
   return (
     <section className='review-frame'>
       <h2 className='review-title'>Reviews</h2>
@@ -16,14 +24,7 @@ const Review = ({ reviews }) => {
           {reviews.map((review) => (
             <>
               <li key={review._id}>
-                <div className='each-user-review'>
-                  <div className='cat-character-img'>
-                    <img
-                      src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
-                      alt="user's cat image"
-                    />
-                  </div>
-                  <div>
+                <div className='each-user-review'>    
                     <Link
                       key={review._id}
                       to={{
@@ -34,11 +35,19 @@ const Review = ({ reviews }) => {
                         },
                       }}
                     >
-                      <h3>{review.user.name}</h3>
+                      <div className='cat-character-img'>
+                        <img
+                          src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
+                          alt="user's cat image"
+                        />
+                      </div>
                     </Link>
-                    <p className='review-comment'>{review.comment}</p>
-                    <div>😄</div>
-                  </div>
+                    <div className='cat-info'>
+                      <h3>{review.cat.name}</h3>
+                      <h3>{review.cat.gender}</h3>
+                    </div>
+                    <pre className='review-comment'>{review.comment}</pre>
+                    <div>{getFaceImage(review.rate)}</div>
                 </div>
               </li>
             </>
