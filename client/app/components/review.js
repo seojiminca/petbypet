@@ -1,16 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../style/review.css';
+import { getFaceImage, getAge } from '../util';
 
 const Review = ({ reviews }) => {
 
-  const getFaceImage = (rate) => {
-    if(rate === 1) return '😄';
-    if(rate === 2) return '🙂';
-    if(rate === 3) return '😣';
-    return "X";
-  }
-  
   return (
     <section className='review-frame'>
       <h2 className='review-title'>Reviews</h2>
@@ -44,6 +38,7 @@ const Review = ({ reviews }) => {
                     </Link>
                     <div className='cat-info'>
                       <h3>{review.cat.name}</h3>
+                      <h3>{`${getAge(review.cat.DOB)},`}</h3>
                       <h3>{review.cat.gender}</h3>
                     </div>
                     <pre className='review-comment'>{review.comment}</pre>
