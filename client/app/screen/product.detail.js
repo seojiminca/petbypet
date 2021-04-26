@@ -25,7 +25,9 @@ const ProductDetail = () => {
       <section>
         <div className='product-detail'>
           <div className='detail-img-wrapper'>
-            <img className='detail-img' src={data.product.image}></img>
+            <div>
+              <img className='detail-img' src={data.product.image}></img>
+            </div>
           </div>
           <div className='detail-wrapper'>
             <h1>{data.product.name}</h1>
