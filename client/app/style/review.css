@@ -6,15 +6,11 @@
     color: #326277;
     font-weight: 500;
     font-size:13px;
+    width: 400px;
 }
 
 .review-title {
     font-weight: 600;
-}
-
-.cat-character-img img {
-    width: 50px;
-    margin-right:20px;
 }
 
 .each-user-review {
@@ -22,14 +18,57 @@
     border-radius: 15px;
     margin-bottom: 20px;
     margin-top:10px;
-    padding:15px;
-    display: flex;
+    padding:20px;
+    width: 376px;
+    /*자식이 float 썼으면 부모는 overflow: hidden이어야한다. 그럼 높이도 필요없음*/
+    overflow: hidden;
+}
+
+.cat-character-img{
+    width: 50px;
+    margin-right:20px;
+    border: 1px solid darkcyan;
+
+}
+
+.cat-character-img img {
+    width: 50px;
+    margin-right:20px;
+    border: 1px solid blue;
+
+}
+
+.cat-info{
+    border: 1px solid deeppink;
+    width: 60px;
+
+}
+
+.cat-info h3{
+    text-align:center;
+    width: 60px;
+    border: 1px solid darkgreen;
 }
 
 .review-comment {
-    background-color: #e4f2f7;
+    background-color: #F6FDFF;
     border-radius: 6px;
-    width:250px;
+    width:230px;
     padding:5px;
-    height:60px;
+    height:80px;
+
+}
+
+.cat-face {
+    float: right;
+}
+
+.group-left{
+    float: left;
+    width: 30%;
+}
+
+.group-right{
+    float: right;
+    width: 70%;
 }

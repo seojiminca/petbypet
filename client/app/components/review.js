@@ -18,31 +18,34 @@ const Review = ({ reviews }) => {
           {reviews.map((review) => (
             <>
               <li key={review._id}>
-                <div className='each-user-review'>    
-                    <Link
-                      key={review._id}
-                      to={{
-                        pathname: '/catProfile',
-                        state: {
-                          userId: review.user._id,
-                          userName: review.user.name,
-                        },
-                      }}
-                    >
-                      <div className='cat-character-img'>
-                        <img
-                          src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
-                          alt="user's cat image"
-                        />
-                      </div>
-                    </Link>
-                    <div className='cat-info'>
-                      <h3>{review.cat.name}</h3>
-                      <h3>{`${getAge(review.cat.DOB)},`}</h3>
-                      <h3>{review.cat.gender}</h3>
+                <div className='each-user-review'>
+                    <div className='group-left'>
+                        <Link
+                          key={review._id}
+                          to={{
+                            pathname: '/catProfile',
+                            state: {
+                              userId: review.user._id,
+                              userName: review.user.name,
+                            },
+                          }}
+                        >
+                          <div className='cat-character-img'>
+                            <img
+                              src='https://www.flaticon.com/svg/static/icons/svg/208/208132.svg'
+                              alt="user's cat image"
+                            />
+                          </div>
+                        </Link>
+                        <div className='cat-info'>
+                            <h3>{review.cat.name}{`, ${getAge(review.cat.DOB)}`}</h3>
+                            <h3>{review.cat.gender}</h3>
+                        </div>
                     </div>
-                    <pre className='review-comment'>{review.comment}</pre>
-                    <div>{getFaceImage(review.rate)}</div>
+                    <div className='group-right'>
+                        <div className='review-comment'>{review.comment}</div>
+                        <div className='cat-face'>{getFaceImage(review.rate)}</div>
+                    </div>
                 </div>
               </li>
             </>
