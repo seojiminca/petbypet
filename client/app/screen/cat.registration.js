@@ -107,3 +107,34 @@ const CatRegistration = (props) => {
   );
 };
 export default CatRegistration;
+
+
+
+
+// <form
+//                                 onSubmit={handleSubmit}
+//                             >
+//                                 <div>
+//                                     <input
+//                                         type='text'
+//                                         placeholder='Comment'
+//                                         onChange={handleChange('comment')}
+//                                         value={comment}
+//                                     />
+
+//                                     {/*file upload*/}
+//                                     <div>
+//                                         <input type="file" name="file" onChange={null} />
+//                                         <button onClick={null}>
+//                                         </button>
+//                                     </div>
+
+//                                     <div>
+//                                         <button>Cancel
+//                                         </button>
+//                                         <button>
+//                                             <span>{textChange}</span>
+//                                         </button>
+//                                     </div>
+//                                 </div>
+//                             </form>

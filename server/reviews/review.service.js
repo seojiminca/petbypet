@@ -13,9 +13,10 @@ module.exports = {
 //@route POST http://localhost:5000/reviews/
 //@desc post reviews
 //@access Private
-async function register(userId, reviewParam) {
+async function register(user, reviewParam) {
   const review = new reviewModel(reviewParam);
-  review.user = userId;
+  review.user = user.id;
+  review.cat = user.cat.id;
   return await review.save();
 }
 

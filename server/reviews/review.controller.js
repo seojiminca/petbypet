@@ -5,7 +5,7 @@ const passport = require('passport');
 const checkAuth = passport.authenticate('jwt', { session: false });
 
 //routes
-router.post('/post', checkAuth, register);
+router.post('/', checkAuth, register);
 router.get('/byProduct/:id', getByProductId);
 router.get('/byUser/:id', getByUserId);
 router.get('/:id', checkAuth, getById);
@@ -18,10 +18,9 @@ module.exports = router;
 //@desc post reviews
 //@access Private
 function register(req, res, next) {
-  const userId = req.user.id;
-
+  const user = req.user;
   reviewService
-    .register(userId, req.body)
+    .register(user, req.body)
     //.then(() => res.json({message:"success!"}))
     .then((review) => res.json(review))
     .catch((err) => next(err));
