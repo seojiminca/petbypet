@@ -36,7 +36,7 @@ const ProductDetail = () => {
               <Link
                 className='btn-txt'
                 to={{
-                  pathname: `/reviewregistration/${data.product.name}`,
+                  pathname: `/reviewregistration/${data.product._id}`,
                   state: {
                     productId: data.product._id,
                     image: data.product.image,

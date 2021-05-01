@@ -40,13 +40,12 @@
 
 .cat-info{
     border: 1px solid deeppink;
-    width: 60px;
-
+    width: 70px;
+    margin-top: 10px;
 }
 
 .cat-info h3{
     text-align:center;
-    width: 60px;
     border: 1px solid darkgreen;
 }
 
@@ -56,11 +55,11 @@
     width:230px;
     padding:5px;
     height:80px;
-
 }
 
 .cat-face {
     float: right;
+    margin-top: 10px;
 }
 
 .group-left{
