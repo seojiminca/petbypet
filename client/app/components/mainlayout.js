@@ -11,7 +11,9 @@ const MainLayout = ({ children, top, footer, loading }) => {
         {top && (
           <Top
             title={top.title}
-            isBackButton={top.isBackButton}
+            isHome={top.isHome}
+            isSign={top.isSign}
+            isSettings={top.isSettings}
             backFunc={top.backFunc}
             params={top.params}
           />

@@ -21,7 +21,7 @@ const ProductDetail = () => {
   }, []);
 
   return (
-    <MainLayout top={{ title: 'Reviews', isBackButton: true }} footer>
+    <MainLayout top={{ title: 'Reviews' }} footer>
       <section>
         <div className='product-detail'>
           <div className='detail-img-wrapper'>

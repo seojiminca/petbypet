@@ -25,9 +25,27 @@
 }
 
 .inner_contents{
-  overflow: scroll; /*scroll hidden 언니가 나중에*/
+  overflow: auto; /*scroll hidden 언니가 나중에*/
+  /* scrollbar-width: none; */
+  /*-ms-overflow-style: none; */
   height:100%;
   width: 400px;
   /*max-height:95%;*/
   border: 2px solid orangered;
+}
+
+/* .inner_contents::-webkit-scrollbar {
+  display: none;
+}  */
+
+
+footer {
+  border: 1px solid blueviolet;
+  height: 150px;
+}
+
+.footer-text {
+  padding-top: 80px;
+  font-size: 13px;
+  text-align: center;
 }

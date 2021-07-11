@@ -17,7 +17,7 @@ const ProductList = () => {
   }, []);
 
   return (
-    <MainLayout top={{ title: 'Pet by Pet', isBackButton: false }} footer>
+    <MainLayout top={{ title: 'Pet by Pet', isHome: true }} footer>
       <ul>
         {data.products.map((item) => (
           <Link
@@ -27,6 +27,7 @@ const ProductList = () => {
                 productId: item._id,
               },
             }}
+            key={item._id}
           >
             <li key={item._id} className='product'>
               <div className='img_wrapper'>

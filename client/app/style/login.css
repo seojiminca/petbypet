@@ -1,0 +1,81 @@
+
+.form {
+    padding:20px 35px;
+}
+
+.form input {
+    border: 1px solid dimgray;
+    height:100%;
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.form input::placeholder {
+    color:rgb(165, 165, 165);
+    padding-left: 5px;
+}
+
+.forgot-password{
+    float: right;
+    color: rgb(80, 80, 80);
+    margin-top: 6px;
+    margin-bottom: 15px;
+    font-size: 90%;
+}
+
+.forgot-password:hover {
+    color: gray;
+}
+
+.form button {
+    height:100%;
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background-color: rgb(175, 175, 175);
+    color: white;
+}
+
+.form button:hover {
+    box-shadow: 0 5px 6px 0 rgba(0,0,0,0.10),0 2px 3px 0 rgba(0,0,0,0.1);
+}
+
+.form p {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: rgb(56, 56, 56);
+}
+
+.google-img {
+    width: 55px;
+    display: block; /*how to center an img*/
+    margin-left: auto;/*how to center an img*/
+    margin-right: auto;/*how to center an img*/
+}
+
+.line {
+    width: 300px;
+    border-bottom: 1px solid rgb(80, 80, 80);
+    margin-top: 25px;
+    display: block; /*how to center an img*/
+    margin-left: auto;/*how to center an img*/
+    margin-right: auto;/*how to center an img*/
+}
+
+.register-wrapper {
+    margin: auto; /*how to center div*/
+    width: 60%;/*how to center div. it was 50%*/
+}
+
+.register-wrapper text {
+    color: rgb(80, 80, 80);
+    margin-right: 8px;
+    font-size: 90%;
+}
+
+.register {
+    color: rgb(35, 105, 211);
+    font-size: 90%;
+}

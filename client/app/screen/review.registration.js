@@ -64,7 +64,7 @@ const ReviewRegistration = () => {
     };
 
     return (
-        <MainLayout top={{ title: 'Reviews', isBackButton: true }} footer>
+        <MainLayout top={{ title: 'Reviews' }} footer>
             <div>
                 {isAuth() ? <Redirect to='/'/> : null}
                 <div></div>

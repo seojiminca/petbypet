@@ -1,0 +1,34 @@
+.topbar {
+    display: flex;
+    height: 50px;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.topbar div {
+    display: flex;
+    gap: 12px;
+    position: absolute;
+}
+
+.topbar_left {
+    left: 0;
+}
+
+.topbar_left button {
+    border: 0 solid;
+    background-color: transparent;
+    color: #326277;
+}
+
+.topbar_right {
+    right: 0;
+}
+
+.topbar-center h1 {
+    color: #326277;
+    font-size: 20px;
+    font-weight: 700;
+}

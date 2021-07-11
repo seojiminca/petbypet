@@ -1,11 +1,11 @@
 import React from 'react';
-import '../style/top_footer.css';
+import '../style/background.css';
 
 const Footer = () => {
   return (
     <footer>
       <div>
-        <h6 className='footer-text'>2020 © PetbyPet All rights reserved.</h6>
+        <h6 className='footer-text'>2021 © PetbyPet All rights reserved.</h6>
       </div>
     </footer>
   );

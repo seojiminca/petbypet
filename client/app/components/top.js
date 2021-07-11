@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import '../style/top_footer.css';
+import '../style/top.css';
 import {
   faChevronLeft,
   faHome,
@@ -9,33 +9,51 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Top = ({ title, isBackButton, backFunc, params }) => {
+
+const Top = ({ title, isHome, isSign, isSettings, backFunc, params }) => {
+
   const history = useHistory();
+  const user = localStorage.getItem('user');
+  console.log(user);
+  const goBackPage = () => {
+    if(backFunc) backFunc();
+    else history.goBack();
+  }
+
   return (
-    <nav>
-      <div className='top_bar'>
-        {isBackButton && (
-          <div>
-            <Link style={{ marginRight: 20 }}>
-              <FontAwesomeIcon icon={faChevronLeft} size='2x' />
-            </Link>
-            <Link to='/'>
-              <FontAwesomeIcon icon={faHome} size='2x' />
-            </Link>
+    <nav className='topbar'>
+        {!isHome && (
+          <div className="topbar_left">
+            <button>
+              <FontAwesomeIcon icon={faChevronLeft} size='2x' onClick={goBackPage}/>
+            </button>
+           {!isSign && (
+              <Link to='/'>
+                <FontAwesomeIcon icon={faHome} size='2x' />
+              </Link>
+           )} 
           </div>
         )}
-        <div className='topbar-title'>
+        <div className='topbar-center'>
           <h1>{title}</h1>
         </div>
-        <Link to='/'>
-          <FontAwesomeIcon icon={faSearch} size='2x' />
-        </Link>
-        <div className='login'>
-          <Link>
-            <FontAwesomeIcon icon={faUserPlus} size='2x' />
+        {!isSign && (
+          <div className='topbar_right'>
+          <Link to='/'>
+            <FontAwesomeIcon icon={faSearch} size='2x'>search</FontAwesomeIcon>
           </Link>
+          {(!isSettings) ? (
+              <Link to='/login'>
+                <FontAwesomeIcon icon={faUserPlus} size='2x' />
+              </Link>
+            ) : (
+            <Link to='/login'>
+              <FontAwesomeIcon icon={cog} size='2x' />
+            </Link>
+        )}
         </div>
-      </div>
+        )}
+        
     </nav>
   );
 };
